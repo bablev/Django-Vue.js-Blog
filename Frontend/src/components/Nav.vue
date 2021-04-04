@@ -33,7 +33,7 @@
           </li>
         </ul>
         <a class="btn btn-outline-secondary"  id="reg" role="button"  @click="$router.push('/auth/signup')">Sign Up</a>
-        <a class="btn btn-outline-secondary" href="#" id="log" role="button">Sign In</a>
+        <a class="btn btn-outline-secondary"  id="log" role="button"  @click="$router.push('/auth/signin')">Sign In</a>
         <form class="d-flex">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success" type="submit">Search</button>

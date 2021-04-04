@@ -12,63 +12,44 @@
       <div class="form-group">
         <input v-model="data.username" type="text" class="form-control input-lg" name="username" placeholder="Username"
                required="required">
-        <span class="danger">{{data.errArray['username']?data.errArray['username'].toString():''}}</span>
-      </div>
-      <div class="form-group">
-        <input v-model="data.email" type="email" class="form-control input-lg" name="email" placeholder="Email Address"
-               required="required">
-        <span class="danger">{{data.errArray['email']?data.errArray['email'].toString():''}}</span>
+        <span class="danger">{{ data.errArray['username'] ? data.errArray['username'].toString() : '' }}</span>
       </div>
       <div class="form-group">
         <input v-model="data.password" type="password" class="form-control input-lg" name="password"
                placeholder="Password" required="required">
-        <span class="danger">{{data.errArray['password']?data.errArray['password'].toString():''}}</span>
+        <span class="danger">{{ data.errArray['password'] ? data.errArray['password'].toString() : '' }}</span>
       </div>
       <div class="form-group">
-        <input v-model="data.confirm_password" type="password" class="form-control input-lg" name="confirm_password"
-               placeholder="Confirm Password"
-               required="required">
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-success btn-lg btn-block signup-btn">Sign Up</button>
+        <button type="submit" class="btn btn-success btn-lg btn-block signup-btn">Sign In</button>
       </div>
     </form>
-    <div class="text-center">Already have an account? <a href="#">Login here</a></div>
   </div>
-
 </template>
 
-<!--container end.//-->
-
-<script lang="ts">
+<script>
 import {reactive} from "@vue/composition-api";
 import Vue from 'vue';
-
 export default {
-  name: "SignUp",
-  setup() {
-    const data = reactive({
-      username: '',
-      email: '',
-      password: '',
-      confirm_password: '',
-      errArray: [],
-    });
-    return {
-      data
-    }
-
-  },
-  methods: {
-    async submit() {
-      await Vue.axios.post('http://127.0.0.1:8000/auth/signup/', this.data)
-          .then((res) => {
-            console.log(res);
-            this.$router.push('/')})
-          .catch(error => this.data.errArray = error.response.data)
+  name: "Login",
+  setup()
+    {
+      const data = reactive({
+        'username': '',
+        'password': '',
+        'errArray': [],
+      });
+      return {data}
+    },
+  methods:{
+    async submit(){
+      await Vue.axios.post('http://127.0.0.1:8000/auth/signin/', this.data)
     }
   }
-}
+
+  }
+
+
+
 </script>
 
 <style scoped>
@@ -78,7 +59,7 @@ export default {
   box-shadow: none;
 }
 
-.danger{
+.danger {
   color: #df4930;
   margin-left: 50px;
   padding-top: 5px;
